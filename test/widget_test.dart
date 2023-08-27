@@ -11,22 +11,36 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:counter_app/main.dart';
 
 void main() {
-  // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-  //   // // Build our app and trigger a frame.
-  //   // await tester.pumpWidget(const MyApp());
+  group('Testing Counter Widget', () { 
 
-  //   // // Verify that our counter starts at 0.
-  //   // expect(find.text('0'), findsOneWidget);
-  //   // expect(find.text('1'), findsNothing);
+    testWidgets('Testing increment Counter Widget', (WidgetTester tester)async{
 
-  //   // // Tap the '+' icon and trigger a frame.
-  //   // await tester.tap(find.byIcon(Icons.add));
-  //   // await tester.pump();
+    //setup
+    await tester.pumpWidget(const MyApp());
+    //do
+    await tester.tap(find.byIcon(Icons.add));
+   
+    await tester.pump();
+    //test
 
-  //   // // Verify that our counter has incremented.
-  //   // expect(find.text('0'), findsNothing);
-  //   // expect(find.text('1'), findsOneWidget);
-  // });
+    expect(find.text('0'), findsNothing);
+     expect(find.text('1'), findsOneWidget);
+  });
 
+  testWidgets('Testing decrement Counter Widget', (WidgetTester tester )async {
+//setup
+   await tester.pumpWidget(const MyApp());
+  //do
+  await tester.tap(find.byIcon(Icons.remove));
+
+  await tester.pump();
+  //test
+
+ 
+  expect(find.text('-1'), findsOneWidget);
+
+  });
+
+  });
   
 }
